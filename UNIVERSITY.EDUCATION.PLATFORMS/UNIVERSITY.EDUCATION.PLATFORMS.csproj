@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>852024e6-b5ff-4f4d-bc11-3fb4b8783ece</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.22.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\UNIVERSITY.EDUCATION.PLATFORMS.Application\UNIVERSITY.EDUCATION.PLATFORMS.Application.csproj" />
+    <ProjectReference Include="..\UNIVERSITY.EDUCATION.PLATFORMS.ServiceDefaults\UNIVERSITY.EDUCATION.PLATFORMS.ServiceDefaults.csproj" />
+  </ItemGroup>
+
+</Project>
