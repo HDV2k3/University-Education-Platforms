@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\UNIVERSITY.EDUCATION.PLATFORMS.Application\UNIVERSITY.EDUCATION.PLATFORMS.Application.csproj" />
     <ProjectReference Include="..\UNIVERSITY.EDUCATION.PLATFORMS.Domain\UNIVERSITY.EDUCATION.PLATFORMS.Domain.csproj" />
   </ItemGroup>
 

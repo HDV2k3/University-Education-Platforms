@@ -3,7 +3,7 @@ using UNIVERSITY.EDUCATION.PLATFORMS.Domain.Common;
 
 namespace UNIVERSITY.EDUCATION.PLATFORMS.Infrastructure.Persistence.Entities
 {
-    public class Students : DomainEntity<int>
+    public class Students : DomainEntity<Guid>
     {
         [MaxLength(ListBaseEntityConstants.PhoneNumberMaxLength)]
         public string PhoneNumber { get; set; }

@@ -8,9 +8,9 @@ namespace UNIVERSITY.EDUCATION.PLATFORMS.Domain.Common
 {
     public class AuditableBaseEntity
     {
-        public string CreatedAt { get; set; }
+        public Guid CreatedBy { get; set; }
         public DateTime CreatedDate { get; set; }
-        public string? ModifiedBy { get; set; }
+        public Guid? ModifiedBy { get; set; }
         public DateTime ModifiedDate { get; set; }
         public bool IsDelete { get; set; }
         public bool IsActive { get; set; }
