@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UNIVERSITY.EDUCATION.PLATFORMS.Application
+namespace UNIVERSITY.EDUCATION.PLATFORMS.Application.Extensions
 {
     public static class DependencyInjection
     {
