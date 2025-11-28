@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Persistence\Configurations\**" />
+    <EmbeddedResource Remove="Persistence\Configurations\**" />
+    <None Remove="Persistence\Configurations\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.11" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="10.0.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.0" />
@@ -14,10 +20,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\UNIVERSITY.EDUCATION.PLATFORMS.Domain\UNIVERSITY.EDUCATION.PLATFORMS.Domain.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Persistence\Configurations\" />
   </ItemGroup>
 
 </Project>
