@@ -11,11 +11,15 @@ namespace UNIVERSITY.EDUCATION.PLATFORMS.Infrastructure.Extensions
     public static class DependencyInjection
     {
         public static IServiceCollection AddInfrastructure(
-            this IServiceCollection services,
+        this IServiceCollection services,
             IConfiguration configuration)
         {
-     
-            var connectionString = configuration.GetConnectionString("DefaultConnection");
+            var envConnection = Environment.GetEnvironmentVariable("DB_CONNECTION");
+            var connectionString = envConnection ??
+                                   configuration.GetConnectionString("DefaultConnection");
+
+            if (string.IsNullOrWhiteSpace(connectionString))
+                throw new Exception("Connection string is missing. Please set DB_CONNECTION environment variable.");
 
             services.AddDbContext<UEPContext>(options =>
             {
@@ -23,15 +27,16 @@ namespace UNIVERSITY.EDUCATION.PLATFORMS.Infrastructure.Extensions
                     sqlOptions => sqlOptions.MigrationsAssembly(
                         typeof(UEPContext).Assembly.FullName));
             });
+
             services.AddScoped<IAuthenticatedService, AuthenticatedService>();
             services.AddScoped<IApplicationDbContext>(provider =>
                 provider.GetRequiredService<UEPContext>());
-
             services.AddScoped<ICommandDbContext>(provider =>
                 provider.GetRequiredService<UEPContext>());
-
             services.AddScoped<IDatabaseService<UEPContext>, DatabaseService<UEPContext>>();
+
             return services;
         }
+
     }
 }
