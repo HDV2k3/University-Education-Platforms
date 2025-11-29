@@ -22,7 +22,7 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
 
     - name: Build Docker image
-      run: docker build -t university-platforms .
+      run: docker build -f src/UNIVERSITY.EDUCATION.PLATFORMS/Dockerfile -t devhuynh2003/university-platforms:latest .
 
     - name: Tag image
       run: docker tag university-platforms ${{ secrets.DOCKER_USERNAME }}/university-platforms:latest
