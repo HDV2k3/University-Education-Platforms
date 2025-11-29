@@ -21,7 +21,7 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
 
     - name: Build Docker image
-      run: docker build -f src/UNIVERSITY.EDUCATION.PLATFORMS/Dockerfile -t ${{ secrets.DOCKER_USERNAME }}/university-platforms:latest .
+      run: docker build -t ${{ secrets.DOCKER_USERNAME }}/university-platforms:latest .
 
     - name: Push image
       run: docker push ${{ secrets.DOCKER_USERNAME }}/university-platforms:latest
