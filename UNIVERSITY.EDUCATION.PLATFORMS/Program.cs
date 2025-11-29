@@ -19,4 +19,5 @@ var app = builder.Build();
 app.MapDefaultEndpoints();
 
 app.MapGet("/", () => "Hello World!");
+app.MapGet("/health", () => Results.Ok(new { status = "Healthy", timestamp = DateTime.UtcNow }));
 app.Run();
