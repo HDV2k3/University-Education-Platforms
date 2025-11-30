@@ -32,7 +32,7 @@ jobs:
     needs: build
 
     steps:
-      - name: Deploy to VPS with rollback
+      - name: Deploy to VPS (safe + rollback)
         uses: appleboy/ssh-action@v0.1.5
         with:
           host: ${{ secrets.VPS_HOST }}
@@ -42,13 +42,13 @@ jobs:
             set -e
             cd /var/www/uep
 
-            echo "Create network if missing"
+            echo "Ensure docker network exists"
             docker network inspect uep-network >/dev/null 2>&1 || docker network create uep-network
 
             echo "Pull latest API image"
             docker pull ${{ secrets.DOCKER_USERNAME }}/university-platforms:latest
 
-            echo "Start temporary API container"
+            echo "Start temporary container for health check"
             docker rm -f uep-api-temp 2>/dev/null || true
             docker run --name uep-api-temp -d \
               --env-file .env \
@@ -56,13 +56,13 @@ jobs:
               -p 8081:8080 \
               ${{ secrets.DOCKER_USERNAME }}/university-platforms:latest
 
-            echo "Waiting for API health..."
+            echo "Checking health..."
             for i in {1..15}; do
               if curl -fs http://localhost:8081/health > /dev/null; then
                 echo "✔ HEALTH OK"
                 break
               fi
-              echo "Waiting ($i/15)..."
+              echo "⏳ Waiting ($i/15)..."
               sleep 3
             done
 
@@ -72,11 +72,16 @@ jobs:
               exit 1
             fi
 
-            echo "✔ New version healthy → Proceeding to deploy"
+            echo "✔ New version healthy → Deploying..."
             docker rm -f uep-api-temp
 
-            echo "Deploy API only (zero downtime)"
-            docker-compose pull api || docker compose pull api
-            docker-compose up -d --no-deps --force-recreate api || docker compose up -d --no-deps --force-recreate api
+            echo "Deploy API only (ZERO downtime)"
+            if command -v docker-compose >/dev/null 2>&1; then
+              docker-compose pull api
+              docker-compose up -d --no-deps --force-recreate api
+            else
+              docker compose pull api
+              docker compose up -d --no-deps --force-recreate api
+            fi
 
             echo "Deployment SUCCESSFUL"
