@@ -84,4 +84,4 @@ jobs:
               docker compose up -d --no-deps --force-recreate api
             fi
 
-            echo "Deployment SUCCESSFUL"
+            echo "Deployment SUCCESSFUL" 
