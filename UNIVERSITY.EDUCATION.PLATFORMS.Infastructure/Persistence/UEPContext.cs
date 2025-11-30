@@ -9,9 +9,9 @@ namespace UNIVERSITY.EDUCATION.PLATFORMS.Infrastructure.Persistence
 {
     public partial class UEPContext : BaseDbContext
     {
-        private readonly IAuthenticatedService _authenticatedUser;
+        private readonly IAuthenticatedUserService _authenticatedUser;
 
-        public UEPContext(DbContextOptions<UEPContext> options, IAuthenticatedService authenticatedUser)
+        public UEPContext(DbContextOptions<UEPContext> options, IAuthenticatedUserService authenticatedUser)
             : base(options)
         {
             _authenticatedUser = authenticatedUser;

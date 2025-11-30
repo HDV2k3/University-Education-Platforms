@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
 using System.Data;
 
-namespace UNIVERSITY.EDUCATION.PLATFORMS.Infrastructure.Persistence.Configurations
+namespace UNIVERSITY.EDUCATION.PLATFORMS.Application.Services.Interface
 {
-    internal interface IDatabaseService<T> where T : DbContext, IApplicationDbContext, IDisposable
+    public interface IDatabaseService<T> where T : DbContext, IApplicationDbContext, IDisposable
     {
         DatabaseFacade Database { get; }
 

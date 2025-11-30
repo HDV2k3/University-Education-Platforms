@@ -2,7 +2,7 @@
 
 namespace UNIVERSITY.EDUCATION.PLATFORMS.Infrastructure.Services.Impl
 {
-    internal class AuthenticatedService : IAuthenticatedService
+    internal class AuthenticatedService : IAuthenticatedUserService
     {
         public Guid UserId => throw new NotImplementedException();
 

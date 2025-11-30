@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace UNIVERSITY.EDUCATION.PLATFORMS.Application.Services.Interface
+﻿namespace UNIVERSITY.EDUCATION.PLATFORMS.Application.Services.Interface
 {
-    public interface IAuthenticatedService
+    public interface IAuthenticatedUserService
     {
         Guid UserId { get; }
         string Email { get; }

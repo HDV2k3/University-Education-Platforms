@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Data;
 using System.Data.Common;
 using System.Reflection;
+using UNIVERSITY.EDUCATION.PLATFORMS.Application.Services.Interface;
 
 namespace UNIVERSITY.EDUCATION.PLATFORMS.Infrastructure.Persistence.Configurations
 {
