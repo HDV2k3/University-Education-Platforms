@@ -17,5 +17,8 @@ namespace UNIVERSITY.EDUCATION.PLATFORMS.Domain.Common
         public const int NameMaxLength = 500;
         public const int CodeMaxLength = 255;
         public const int DescriptionMaxLength = 1000;
+        public const int StudentCodeMaxLength = 10;
+        public const int ProgramMaxLength = 1000;
+        public const int ThousandMaxLength = 1000;
     }
 }

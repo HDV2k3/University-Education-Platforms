@@ -1,8 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using UNIVERSITY.EDUCATION.PLATFORMS.Application.Services.Interface;
 using UNIVERSITY.EDUCATION.PLATFORMS.Domain.Common;
+using UNIVERSITY.EDUCATION.PLATFORMS.Domain.Entities;
 using UNIVERSITY.EDUCATION.PLATFORMS.Infrastructure.Persistence.Configurations;
-using UNIVERSITY.EDUCATION.PLATFORMS.Infrastructure.Persistence.Entities;
+using UNIVERSITY.EDUCATION.PLATFORMS.Infrastructure.Persistence.Configurations.Entities;
 
 namespace UNIVERSITY.EDUCATION.PLATFORMS.Infrastructure.Persistence
 {
@@ -16,8 +17,17 @@ namespace UNIVERSITY.EDUCATION.PLATFORMS.Infrastructure.Persistence
             _authenticatedUser = authenticatedUser;
         }
 
-        public virtual DbSet<Students> Students { get; set; }
+        #region DbSets
+        public DbSet<Users> Users { get; set; }
+        public DbSet<UserType> UserTypes { get; set; }
+        public DbSet<Students> Students { get; set; }
+        public DbSet<Role> Roles { get; set; }
+        public DbSet<Permission> Permissions { get; set; }
+        public DbSet<UserRole> UserRoles { get; set; }
+        public DbSet<RolePermission> RolePermissions { get; set; }
+        #endregion
 
+        #region SaveChanges Tracking
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
             foreach (var entry in ChangeTracker.Entries<AuditableBaseEntity>())
@@ -29,7 +39,7 @@ namespace UNIVERSITY.EDUCATION.PLATFORMS.Infrastructure.Persistence
                         entry.Entity.ModifiedDate = DateTime.Now;
                         entry.Entity.CreatedBy = _authenticatedUser.UserId;
                         entry.Entity.ModifiedBy = _authenticatedUser.UserId;
-                        entry.Entity.IsDelete = false;
+                        entry.Entity.IsDeleted = false;
                         break;
 
                     case EntityState.Modified:
@@ -41,20 +51,13 @@ namespace UNIVERSITY.EDUCATION.PLATFORMS.Infrastructure.Persistence
 
             return base.SaveChangesAsync(cancellationToken);
         }
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            base.OnConfiguring(optionsBuilder);
-        }
+        #endregion
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Students>()
-                .HasIndex(s => s.PhoneNumber)
-                .HasDatabaseName("IX_STUDENTS_PHONE")
-                .IsUnique();
-            modelBuilder.Entity<Students>()
-                .HasIndex(s => s.Email)
-                .HasDatabaseName("IX_STUDENTS_EMAIL")
-                .IsUnique();
+            modelBuilder.ApplyConfiguration(new StudentConfiguration());
+            modelBuilder.ApplyConfiguration(new UserRoleConfiguration());
+            modelBuilder.ApplyConfiguration(new RolePermissionConfiguration());
 
             OnModelCreatingPartial(modelBuilder);
         }

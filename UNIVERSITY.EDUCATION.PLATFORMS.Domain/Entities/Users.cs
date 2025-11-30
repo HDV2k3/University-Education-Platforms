@@ -1,15 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using UNIVERSITY.EDUCATION.PLATFORMS.Domain.Common;
 
-namespace UNIVERSITY.EDUCATION.PLATFORMS.Infrastructure.Persistence.Entities
+namespace UNIVERSITY.EDUCATION.PLATFORMS.Domain.Entities
 {
-    public class Students : DomainEntity<Guid>
+    public class Users : DomainEntity<Guid>
     {
-        [MaxLength(ListBaseEntityConstants.PhoneNumberMaxLength)]
-        public string PhoneNumber { get; set; }
-
-        [MaxLength(ListBaseEntityConstants.AddressMaxLength)]
-        public string Address { get; set; }
+        public string FullName { get; set; }
 
         [MaxLength(ListBaseEntityConstants.EmailMaxLength)]
         public string? Email { get; set; }
@@ -19,5 +15,10 @@ namespace UNIVERSITY.EDUCATION.PLATFORMS.Infrastructure.Persistence.Entities
         public string Password { get; set; }
 
         public bool IsActive { get; set; }
+
+        public int UserTypeId { get; set; }
+        public UserType? UserType { get; set; }
+
+        public Students? StudentProfile { get; set; }
     }
 }
