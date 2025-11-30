@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UNIVERSITY.EDUCATION.PLATFORMS.Infrastructure.Persistence;
 
@@ -11,9 +12,11 @@ using UNIVERSITY.EDUCATION.PLATFORMS.Infrastructure.Persistence;
 namespace UNIVERSITY.EDUCATION.PLATFORMS.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(UEPContext))]
-    partial class UEPContextModelSnapshot : ModelSnapshot
+    [Migration("20251130083353_roleAndstudent")]
+    partial class roleAndstudent
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

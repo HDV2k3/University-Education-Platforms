@@ -32,7 +32,7 @@ namespace UNIVERSITY.EDUCATION.PLATFORMS.Infrastructure.Persistence.Configuratio
             // Entity có thuộc tính IsDelete thì filter
             if (typeof(T).GetProperty("IsDelete") != null)
             {
-                query = query.Where(e => e.IsDelete == false);
+                query = query.Where(e => e.IsDeleted == false);
             }
 
             if (isNotTracking)
