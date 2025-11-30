@@ -1,11 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
-using System.Reflection;
+using UNIVERSITY.EDUCATION.PLATFORMS.Application.Services.Interface;
 using UNIVERSITY.EDUCATION.PLATFORMS.Domain.Common;
 
 namespace UNIVERSITY.EDUCATION.PLATFORMS.Infrastructure.Persistence.Configurations
 {
-    public abstract class BaseDbContext : DbContext, IApplicationDbContext, ICommandDbContext
+    public abstract class BaseDbContext : DbContext, IApplicationDbContext
     {
         public BaseDbContext(DbContextOptions options) : base(options)
         {

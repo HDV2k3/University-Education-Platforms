@@ -28,10 +28,8 @@ namespace UNIVERSITY.EDUCATION.PLATFORMS.Infrastructure.Extensions
                         typeof(UEPContext).Assembly.FullName));
             });
 
-            services.AddScoped<IAuthenticatedService, AuthenticatedService>();
+            services.AddScoped<IAuthenticatedUserService, AuthenticatedService>();
             services.AddScoped<IApplicationDbContext>(provider =>
-                provider.GetRequiredService<UEPContext>());
-            services.AddScoped<ICommandDbContext>(provider =>
                 provider.GetRequiredService<UEPContext>());
             services.AddScoped<IDatabaseService<UEPContext>, DatabaseService<UEPContext>>();
 
