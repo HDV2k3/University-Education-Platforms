@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using UNIVERSITY.EDUCATION.PLATFORMS.Application.Models.Users;
 using UNIVERSITY.EDUCATION.PLATFORMS.Application.Services.Interface;
 
