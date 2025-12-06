@@ -2,8 +2,7 @@
 using UNIVERSITY.EDUCATION.PLATFORMS.Application.Models.Users;
 using UNIVERSITY.EDUCATION.PLATFORMS.Application.Services.Interface;
 using UNIVERSITY.EDUCATION.PLATFORMS.Domain.Entities;
-
-namespace UNIVERSITY.EDUCATION.PLATFORMS.Application.Services.Impl
+namespace UNIVERSITY.EDUCATION.PLATFORMS.Application.Services.User
 {
     public class UserService : IUserService
     {
@@ -94,6 +93,23 @@ namespace UNIVERSITY.EDUCATION.PLATFORMS.Application.Services.Impl
 
             await _db.UpdateAsync(user);
             return true;
+        }
+
+        public async Task<UserDto> GetByUserNameAsync(string userName)
+        {
+            var user = await _db.FirstOrDefaultAsync<Users>(x => x.Code == userName);
+            if (user == null)
+                throw new Exception("User not found");
+            var result = new UserDto
+            {
+                Id = user.Id,
+                FullName = user.FullName,
+                Email = user.Email,
+                IsActive = user.IsActive,
+                UserTypeId = user.UserTypeId,
+                UserTypeName = (await _db.FirstOrDefaultAsync<UserType>(x => x.Id == user.UserTypeId))?.Name ?? string.Empty
+            };
+            return result;
         }
     }
 }

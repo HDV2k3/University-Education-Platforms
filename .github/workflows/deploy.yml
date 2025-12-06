@@ -21,8 +21,12 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Build Docker image
-        run: docker build -f UNIVERSITY.EDUCATION.PLATFORMS/Dockerfile -t ${{ secrets.DOCKER_USERNAME }}/university-platforms:latest .
+      - name: Build Docker image (AppHost)
+        run: |
+          docker build \
+            -f UNIVERSITY.EDUCATION.PLATFORMS.AppHost/Dockerfile \
+            -t ${{ secrets.DOCKER_USERNAME }}/university-platforms:latest .
+
 
       - name: Push image
         run: docker push ${{ secrets.DOCKER_USERNAME }}/university-platforms:latest
@@ -42,13 +46,10 @@ jobs:
             set -e
             cd /var/www/uep
 
-            echo "Ensure docker network exists"
             docker network inspect uep-network >/dev/null 2>&1 || docker network create uep-network
 
-            echo "Pull latest API image"
             docker pull ${{ secrets.DOCKER_USERNAME }}/university-platforms:latest
 
-            echo "Start temporary container for health check"
             docker rm -f uep-api-temp 2>/dev/null || true
             docker run --name uep-api-temp -d \
               --env-file .env \
@@ -62,12 +63,12 @@ jobs:
                 echo "✔ HEALTH OK"
                 break
               fi
-              echo "⏳ Waiting ($i/15)..."
+              echo "Waiting ($i/15)..."
               sleep 3
             done
 
             if ! curl -fs http://localhost:8081/health > /dev/null; then
-              echo "New API FAILED — ROLLBACK"
+              echo "New version FAILED — ROLLBACK"
               docker rm -f uep-api-temp
               exit 1
             fi
@@ -75,13 +76,8 @@ jobs:
             echo "✔ New version healthy → Deploying..."
             docker rm -f uep-api-temp
 
-            echo "Deploy API only (ZERO downtime)"
-            if command -v docker-compose >/dev/null 2>&1; then
-              docker-compose pull api
-              docker-compose up -d --no-deps --force-recreate api
-            else
-              docker compose pull api
-              docker compose up -d --no-deps --force-recreate api
-            fi
+            # IMPORTANT — replace "api" with your real docker-compose service name
+            docker compose pull api
+            docker compose up -d --no-deps --force-recreate api
 
-            echo "Deployment SUCCESSFUL"  
+            echo "Deployment SUCCESSFUL"

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using UNIVERSITY.EDUCATION.PLATFORMS.Application.Models.BaseReponse;
+using UNIVERSITY.EDUCATION.PLATFORMS.Application.Models.BaseResponse;
 
 namespace UNIVERSITY.EDUCATION.PLATFORMS.Application.Models.Paged
 {
