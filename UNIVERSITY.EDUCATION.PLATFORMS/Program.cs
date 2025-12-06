@@ -1,20 +1,11 @@
 ﻿using Microsoft.OpenApi;
-using UNIVERSITY.EDUCATION.PLATFORMS.Application.Extensions;
-using UNIVERSITY.EDUCATION.PLATFORMS.Infrastructure.Extensions;
-using UNIVERSITY.EDUCATION.PLATFORMS.Swagger;
+using UNIVERSITY.EDUCATION.PLATFORMS.Extensions;
+using UNIVERSITY.EDUCATION.PLATFORMS.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// CORS
-builder.Services.AddCors(o =>
-{
-    o.AddDefaultPolicy(policy =>
-        policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
-});
-
 // Register Layers
-builder.Services.AddApplication();
-builder.Services.AddInfrastructure(builder.Configuration);
+builder.Services.ServiceDescriptors(builder.Configuration);
 
 // Controllers
 builder.Services.AddControllers();
@@ -44,12 +35,26 @@ app.UseSwaggerUI(c =>
     c.RoutePrefix = string.Empty; 
 });
 
-// Routing
+app.UseStaticFiles();
+
+app.UseRouting();
+
+app.UseCors(x => x
+    .AllowAnyMethod()
+    .AllowAnyHeader()
+    .SetIsOriginAllowed(origin => true) // allow any origin
+    .AllowCredentials());
+
+// global error handler
+app.UseMiddleware<ErrorHandlerMiddleware>();
+
+app.UseHttpsRedirection();
+
 app.UseAuthorization();
+
 app.MapControllers();
 
-// Test endpoints
-app.MapGet("/", () => "UEP API is running (.NET 9)");
+
 app.MapGet("/health", () =>
     Results.Ok(new { status = "Healthy", timestamp = DateTime.UtcNow }));
 

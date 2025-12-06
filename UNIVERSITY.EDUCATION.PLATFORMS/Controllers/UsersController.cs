@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using UNIVERSITY.EDUCATION.PLATFORMS.Application.Models.Users;
-using UNIVERSITY.EDUCATION.PLATFORMS.Application.Services.Interface;
+using UNIVERSITY.EDUCATION.PLATFORMS.Application.Services.Users;
 
 namespace UNIVERSITY.EDUCATION.PLATFORMS.Controllers
 {

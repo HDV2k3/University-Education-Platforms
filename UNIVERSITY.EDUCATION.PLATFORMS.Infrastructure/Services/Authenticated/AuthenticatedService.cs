@@ -1,8 +1,8 @@
 ﻿using UNIVERSITY.EDUCATION.PLATFORMS.Application.Services.Interface;
 
-namespace UNIVERSITY.EDUCATION.PLATFORMS.Infrastructure.Services.Impl
+namespace UNIVERSITY.EDUCATION.PLATFORMS.Infrastructure.Services.Authenticated
 {
-    internal class AuthenticatedService : IAuthenticatedUserService
+    public class AuthenticatedService : IAuthenticatedUserService
     {
         public Guid UserId => throw new NotImplementedException();
 

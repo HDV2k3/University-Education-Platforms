@@ -224,10 +224,6 @@ namespace UNIVERSITY.EDUCATION.PLATFORMS.Infrastructure.Persistence.Configuratio
             }
         }
 
-        /// <summary>
-        /// Get detail add/update/delete informations 
-        /// </summary>
-        /// <returns></returns>
         public Dictionary<string, (int, int, int)> GetAddUpdateDeleteEntryCount()
         {
             var entities = _dbContext.ChangeTracker.Entries().Where(x => x.State != EntityState.Unchanged);
@@ -244,10 +240,6 @@ namespace UNIVERSITY.EDUCATION.PLATFORMS.Infrastructure.Persistence.Configuratio
             });
             return dic;
         }
-
-        /// <summary>
-        /// Get instance of dbcontext in a serviceScope identified by type of 'T'.
-        /// </summary>
         public T GetContextScoped(IServiceScope serviceScope)
         {
             if (serviceScope != null)
