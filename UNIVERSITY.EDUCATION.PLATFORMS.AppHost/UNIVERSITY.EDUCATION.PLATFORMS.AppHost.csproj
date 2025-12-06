@@ -11,18 +11,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\.dockerignore" Link=".dockerignore">
-      <DependentUpon>$(DockerDefaultDockerfile)</DependentUpon>
-    </None>
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Aspire.Hosting.AppHost" Version="9.5.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\UNIVERSITY.EDUCATION.PLATFORMS.Application\UNIVERSITY.EDUCATION.PLATFORMS.Application.csproj" />
-    <ProjectReference Include="..\UNIVERSITY.EDUCATION.PLATFORMS.Infrastructure\UNIVERSITY.EDUCATION.PLATFORMS.Infrastructure.csproj" />
     <ProjectReference Include="..\UNIVERSITY.EDUCATION.PLATFORMS\UNIVERSITY.EDUCATION.PLATFORMS.csproj" />
   </ItemGroup>
 

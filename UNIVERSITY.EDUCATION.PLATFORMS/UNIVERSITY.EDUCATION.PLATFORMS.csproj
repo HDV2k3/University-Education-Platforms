@@ -28,4 +28,8 @@
 	  <ProjectReference Include="..\UNIVERSITY.EDUCATION.PLATFORMS.ServiceDefaults\UNIVERSITY.EDUCATION.PLATFORMS.ServiceDefaults.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="..\.dockerignore" Link=".dockerignore" />
+  </ItemGroup>
+
 </Project>
