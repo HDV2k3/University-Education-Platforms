@@ -1,40 +1,40 @@
-﻿# ================================
-# Build stage - .NET 9 SDK
-# ================================
+﻿# ====================================
+# 1. Build stage
+# ====================================
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 WORKDIR /src
 
-# Copy csproj files
+# Copy all csproj files
 COPY ["UNIVERSITY.EDUCATION.PLATFORMS.AppHost/UNIVERSITY.EDUCATION.PLATFORMS.AppHost.csproj", "UNIVERSITY.EDUCATION.PLATFORMS.AppHost/"]
 COPY ["UNIVERSITY.EDUCATION.PLATFORMS/UNIVERSITY.EDUCATION.PLATFORMS.csproj", "UNIVERSITY.EDUCATION.PLATFORMS/"]
 COPY ["UNIVERSITY.EDUCATION.PLATFORMS.Application/UNIVERSITY.EDUCATION.PLATFORMS.Application.csproj", "UNIVERSITY.EDUCATION.PLATFORMS.Application/"]
 COPY ["UNIVERSITY.EDUCATION.PLATFORMS.Domain/UNIVERSITY.EDUCATION.PLATFORMS.Domain.csproj", "UNIVERSITY.EDUCATION.PLATFORMS.Domain/"]
 COPY ["UNIVERSITY.EDUCATION.PLATFORMS.Infrastructure/UNIVERSITY.EDUCATION.PLATFORMS.Infrastructure.csproj", "UNIVERSITY.EDUCATION.PLATFORMS.Infrastructure/"]
 COPY ["UNIVERSITY.EDUCATION.PLATFORMS.ServiceDefaults/UNIVERSITY.EDUCATION.PLATFORMS.ServiceDefaults.csproj", "UNIVERSITY.EDUCATION.PLATFORMS.ServiceDefaults/"]
-COPY ["UNIVERSITY.EDUCATION.PLATFORMS.Web/UNIVERSITY.EDUCATION.PLATFORMS.Web.csproj", "UNIVERSITY.EDUCATION.PLATFORMS.Web/"]
 
 # Restore dependencies
 RUN dotnet restore "UNIVERSITY.EDUCATION.PLATFORMS.AppHost/UNIVERSITY.EDUCATION.PLATFORMS.AppHost.csproj"
 
-# Copy full source
+# Copy full source code
 COPY . .
 
 # Build AppHost
 WORKDIR "/src/UNIVERSITY.EDUCATION.PLATFORMS.AppHost"
-RUN dotnet build "UNIVERSITY.EDUCATION.PLATFORMS.AppHost.csproj" -c Release -o /app/build
+RUN dotnet build -c Release -o /app/build
 
-# ================================
-# Publish stage
-# ================================
+# ====================================
+# 2. Publish stage
+# ====================================
 FROM build AS publish
-WORKDIR /src/UNIVERSITY.EDUCATION.PLATFORMS.AppHost
-RUN dotnet publish "UNIVERSITY.EDUCATION.PLATFORMS.AppHost.csproj" -c Release -o /app/publish --no-restore
+WORKDIR "/src/UNIVERSITY.EDUCATION.PLATFORMS.AppHost"
+RUN dotnet publish -c Release -o /app/publish --no-restore
 
-# ================================
-# Runtime
-# ================================
+# ====================================
+# 3. Final runtime image
+# ====================================
 FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS final
 WORKDIR /app
+
 COPY --from=publish /app/publish .
 
 EXPOSE 8080
