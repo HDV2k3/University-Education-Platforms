@@ -1,11 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using UNIVERSITY.EDUCATION.PLATFORMS.Domain.Common;
+using UNIVERSITY.EDUCATION.PLATFORMS.Application.Common.Domain;
 
 namespace UNIVERSITY.EDUCATION.PLATFORMS.Domain.Entities
 {
     public class Users : DomainEntity<Guid>
     {
-        public string FullName { get; set; }
 
         [MaxLength(ListBaseEntityConstants.EmailMaxLength)]
         public string? Email { get; set; }

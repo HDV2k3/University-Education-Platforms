@@ -7,47 +7,50 @@ namespace UNIVERSITY.EDUCATION.PLATFORMS.Common
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
     public class AuthorizeAttribute : Attribute, IAuthorizationFilter
     {
-        private readonly string MessageErrorUnauthorized = "Phiên đăng nhập hết hạn";
-        private readonly string ErrorCodeUnauthorized = "error_unauthorized";
+        private const string MessageErrorUnauthorized = "Phiên đăng nhập hết hạn";
+        private const string ErrorCodeUnauthorized = "error_unauthorized";
+
         public void OnAuthorization(AuthorizationFilterContext context)
         {
-            var account = (AuthenticationResponse)context.HttpContext.Items["Account"];
+            // ==== Lấy account an toàn ====
+            var account = context.HttpContext.Items["Account"] as AuthenticationResponse;
+
             if (account == null)
             {
-                // not logged in
-                context.Result = new JsonResult(new
-                {
-                    succeeded = false,
-                    message = MessageErrorUnauthorized,
-                    errorCode = ErrorCodeUnauthorized
-                })
-                { StatusCode = StatusCodes.Status401Unauthorized };
+                SetUnauthorized(context, MessageErrorUnauthorized, ErrorCodeUnauthorized);
+                return;
             }
-            else
+
+            // ==== Check lockout ====
+            if (account.LockoutEnabled == true)
             {
-                if (account.LockoutEnabled == false)
-                    context.Result = new JsonResult(new
-                    {
-                        succeeded = false,
-                        message = "Tài khoản đã bị khóa",
-                        errorCode = "error_deactivate_account"
-                    })
-                    { StatusCode = StatusCodes.Status401Unauthorized };
-                else
-                {
-                    var deviceId = (string)context.HttpContext.Items["DeviceId"];
-                    if (account.DeviceId != deviceId)
-                    {
-                        context.Result = new JsonResult(new
-                        {
-                            succeeded = false,
-                            message = MessageErrorUnauthorized,
-                            errorCode = ErrorCodeUnauthorized
-                        })
-                        { StatusCode = StatusCodes.Status401Unauthorized };
-                    }
-                }
+                SetUnauthorized(context, "Tài khoản đã bị khóa", "error_deactivate_account");
+                return;
             }
+
+            // ==== Lấy DeviceId an toàn ====
+            var deviceId = context.HttpContext.Items["DeviceId"] as string;
+
+            if (!string.IsNullOrWhiteSpace(account.DeviceId) &&
+                !string.IsNullOrWhiteSpace(deviceId) &&
+                account.DeviceId != deviceId)
+            {
+                SetUnauthorized(context, MessageErrorUnauthorized, ErrorCodeUnauthorized);
+                return;
+            }
+        }
+
+        private void SetUnauthorized(AuthorizationFilterContext context, string message, string errorCode)
+        {
+            context.Result = new JsonResult(new
+            {
+                succeeded = false,
+                message = message,
+                errorCode = errorCode
+            })
+            {
+                StatusCode = StatusCodes.Status401Unauthorized
+            };
         }
     }
 }

@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿
+using UNIVERSITY.EDUCATION.PLATFORMS.Application.Models.BaseResponse;
 
 namespace UNIVERSITY.EDUCATION.PLATFORMS.Application.Models.Users
 {
-    public class UserDetailResponse
+    public class UserDetailResponse : DomainResponse<Guid>
     {
-        public Guid Id { get; set; }
 
         public string? FullName { get; set; }
 

@@ -1,56 +1,30 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using UNIVERSITY.EDUCATION.PLATFORMS.Application.Constants;
 using UNIVERSITY.EDUCATION.PLATFORMS.Application.Models.Users;
-using UNIVERSITY.EDUCATION.PLATFORMS.Application.Services.Interface;
+using UNIVERSITY.EDUCATION.PLATFORMS.Application.Service;
+using UNIVERSITY.EDUCATION.PLATFORMS.Domain.Entities;
+using UNIVERSITY.EDUCATION.PLATFORMS.SERVICE.Interface;
 
 namespace UNIVERSITY.EDUCATION.PLATFORMS.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
-    public class UsersController : ControllerBase
+    [ApiVersion("1.0")]
+    [ControllerName("users")]
+    [Route("api/v{version:apiVersion}/users")]
+    public class UsersController
+        : BaseController<Users, Guid, CreateUserRequest, UpdateUserRequest, UserDto, IUserService>
     {
-        private readonly IUserService _service;
-
-        public UsersController(IUserService service)
+        public UsersController(IUserService userService,
+            IAuthenticatedUserService authenticatedUserService)
+            : base(userService, authenticatedUserService)
         {
-            _service = service;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetAll()
-        {
-            return Ok(await _service.GetAllAsync());
-        }
-
-        [HttpGet("{id:guid}")]
-        public async Task<IActionResult> GetById(Guid id)
-        {
-            var user = await _service.GetByIdAsync(id);
-            if (user == null) return NotFound();
-
-            return Ok(user);
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Create([FromBody] CreateUserRequest request)
-        {
-            var result = await _service.CreateAsync(request);
-            return CreatedAtAction(nameof(GetById), new { id = result.Id }, result);
-        }
-
-        [HttpPut("{id:guid}")]
-        public async Task<IActionResult> Update(Guid id, [FromBody] UpdateUserRequest request)
-        {
-            var result = await _service.UpdateAsync(id, request);
-            return Ok(result);
-        }
-
-        [HttpDelete("{id:guid}")]
-        public async Task<IActionResult> Delete(Guid id)
-        {
-            var deleted = await _service.DeleteAsync(id);
-            if (!deleted) return NotFound();
-
-            return NoContent();
-        }
+        protected override string GetPolicyName => CommandCode.VIEW_ROLE.ToString();
+        protected override string GetListPolicyName => CommandCode.VIEW_ROLE.ToString();
+        protected override string CreatePolicyName => CommandCode.CREATE_ROLE.ToString();
+        protected override string DeletePolicyName => CommandCode.DELETE_ROLE.ToString();
+        protected override string UpdatePolicyName => CommandCode.UPDATE_ROLE.ToString();
+        protected override string CacheKey => "USER_CACHE";
     }
 }
