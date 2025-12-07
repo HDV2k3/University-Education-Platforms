@@ -29,7 +29,7 @@
     <ProjectReference Include="..\UNIVERSITY.EDUCATION.PLATFORMS.Application\UNIVERSITY.EDUCATION.PLATFORMS.Application.csproj" />
     <ProjectReference Include="..\UNIVERSITY.EDUCATION.PLATFORMS.Domain\UNIVERSITY.EDUCATION.PLATFORMS.Domain.csproj" />
 	  <ProjectReference Include="..\UNIVERSITY.EDUCATION.PLATFORMS.ServiceDefaults\UNIVERSITY.EDUCATION.PLATFORMS.ServiceDefaults.csproj" />
-	  <ProjectReference Include="..\UNIVERSITY.EDUCATION.PLATFORMS.SERVICE\UNIVERSITY.EDUCATION.PLATFORMS.SERVICE.csproj" />
+	  <ProjectReference Include="..\UNIVERSITY.EDUCATION.PLATFORMS.SERVICE\UNIVERSITY.EDUCATION.PLATFORMS.Service.csproj" />
   </ItemGroup>
 
   <ItemGroup>
