@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using UNIVERSITY.EDUCATION.PLATFORMS.SERVICE.Implementation;
-using UNIVERSITY.EDUCATION.PLATFORMS.SERVICE.Interface;
-using UNIVERSITY.EDUCATION.PLATFORMS.SERVICE.Mappings;
+using UNIVERSITY.EDUCATION.PLATFORMS.Service.Implementation;
+using UNIVERSITY.EDUCATION.PLATFORMS.Service.Interface;
+using UNIVERSITY.EDUCATION.PLATFORMS.Service.Mappings;
 
-namespace UNIVERSITY.EDUCATION.PLATFORMS.SERVICE.Extensions
+namespace UNIVERSITY.EDUCATION.PLATFORMS.Service.Extensions
 {
     public static class DependencyInjection
     {

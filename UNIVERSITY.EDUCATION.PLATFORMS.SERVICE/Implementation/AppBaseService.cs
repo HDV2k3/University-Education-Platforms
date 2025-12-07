@@ -3,7 +3,7 @@ using UNIVERSITY.EDUCATION.PLATFORMS.Infrastructure.Persistence;
 using UNIVERSITY.EDUCATION.PLATFORMS.Application.Common.Domain;
 using UNIVERSITY.EDUCATION.PLATFORMS.Application.Common.Infrastructure;
 using UNIVERSITY.EDUCATION.PLATFORMS.Application.Service;
-using UNIVERSITY.EDUCATION.PLATFORMS.SERVICE.Interface;
+using UNIVERSITY.EDUCATION.PLATFORMS.Service.Interface;
 using UNIVERSITY.EDUCATION.PLATFORMS.Application.Models.BaseResponse;
 using UNIVERSITY.EDUCATION.PLATFORMS.Application.Models.Paged;
 using UNIVERSITY.EDUCATION.PLATFORMS.Application.Common.SmartTable;

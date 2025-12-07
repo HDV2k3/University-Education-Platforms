@@ -7,7 +7,7 @@ using UNIVERSITY.EDUCATION.PLATFORMS.Application.Models.BaseResponse;
 using UNIVERSITY.EDUCATION.PLATFORMS.Application.Service;
 using UNIVERSITY.EDUCATION.PLATFORMS.Common;
 using UNIVERSITY.EDUCATION.PLATFORMS.Helpers;
-using UNIVERSITY.EDUCATION.PLATFORMS.SERVICE.Interface;
+using UNIVERSITY.EDUCATION.PLATFORMS.Service.Interface;
 
 [ApiController]
 public abstract class BaseController<TEntity, TPrimaryKey, TCreate, TUpdate, TViewOutput, TService> : ControllerBase

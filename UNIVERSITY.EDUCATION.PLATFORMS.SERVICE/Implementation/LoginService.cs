@@ -5,9 +5,9 @@ using UNIVERSITY.EDUCATION.PLATFORMS.Application.Models.Login;
 using UNIVERSITY.EDUCATION.PLATFORMS.Application.Models.Users;
 using UNIVERSITY.EDUCATION.PLATFORMS.Domain.Entities;
 using UNIVERSITY.EDUCATION.PLATFORMS.Infrastructure.Persistence;
-using UNIVERSITY.EDUCATION.PLATFORMS.SERVICE.Interface;
+using UNIVERSITY.EDUCATION.PLATFORMS.Service.Interface;
 
-namespace UNIVERSITY.EDUCATION.PLATFORMS.SERVICE.Implementation
+namespace UNIVERSITY.EDUCATION.PLATFORMS.Service.Implementation
 {
     public class LoginService : ILoginService
     {

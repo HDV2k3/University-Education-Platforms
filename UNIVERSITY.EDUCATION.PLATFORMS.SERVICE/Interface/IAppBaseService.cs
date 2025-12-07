@@ -4,7 +4,7 @@ using UNIVERSITY.EDUCATION.PLATFORMS.Application.Models.BaseResponse;
 using UNIVERSITY.EDUCATION.PLATFORMS.Application.Models.Paged;
 using UNIVERSITY.EDUCATION.PLATFORMS.Domain.Common;
 
-namespace UNIVERSITY.EDUCATION.PLATFORMS.SERVICE.Interface
+namespace UNIVERSITY.EDUCATION.PLATFORMS.Service.Interface
 {
     public interface IAppBaseService<TEntity, TPrimaryKey, TCreate, TUpdate, TViewOutput>
         where TCreate : class

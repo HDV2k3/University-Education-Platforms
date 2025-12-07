@@ -6,8 +6,8 @@ using System.Security.Cryptography;
 using System.Text;
 using UNIVERSITY.EDUCATION.PLATFORMS.Application.Models.Settings;
 using UNIVERSITY.EDUCATION.PLATFORMS.Application.Models.Users;
-using UNIVERSITY.EDUCATION.PLATFORMS.SERVICE.Interface;
-namespace UNIVERSITY.EDUCATION.PLATFORMS.SERVICE.Implementation
+using UNIVERSITY.EDUCATION.PLATFORMS.Service.Interface;
+namespace UNIVERSITY.EDUCATION.PLATFORMS.Service.Implementation
 {
     public class JwtTokenService : IJwtTokenService
     {

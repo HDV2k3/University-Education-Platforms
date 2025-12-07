@@ -2,7 +2,7 @@
 using System.Security.Claims;
 using UNIVERSITY.EDUCATION.PLATFORMS.Application.Models.Users;
 
-namespace UNIVERSITY.EDUCATION.PLATFORMS.SERVICE.Interface
+namespace UNIVERSITY.EDUCATION.PLATFORMS.Service.Interface
 {
     public interface IJwtTokenService
     {

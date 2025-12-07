@@ -7,7 +7,7 @@ using UNIVERSITY.EDUCATION.PLATFORMS.Domain.Common.Infrastructure.Persistence.Se
 using UNIVERSITY.EDUCATION.PLATFORMS.Domain.Extensions;
 using UNIVERSITY.EDUCATION.PLATFORMS.Infrastructure.Persistence;
 using UNIVERSITY.EDUCATION.PLATFORMS.Middleware;
-using UNIVERSITY.EDUCATION.PLATFORMS.SERVICE.Extensions;
+using UNIVERSITY.EDUCATION.PLATFORMS.Service.Extensions;
 using UNIVERSITY.EDUCATION.PLATFORMS.Swagger;
 
 var builder = WebApplication.CreateBuilder(args);

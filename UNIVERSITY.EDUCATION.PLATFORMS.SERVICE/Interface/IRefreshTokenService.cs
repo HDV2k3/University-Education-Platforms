@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UNIVERSITY.EDUCATION.PLATFORMS.Domain.Entities;
 
-namespace UNIVERSITY.EDUCATION.PLATFORMS.SERVICE.Interface
+namespace UNIVERSITY.EDUCATION.PLATFORMS.Service.Interface
 {
     public interface IRefreshTokenService
     {

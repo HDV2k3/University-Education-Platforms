@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using UNIVERSITY.EDUCATION.PLATFORMS.Application.Common.Infrastructure;
 using UNIVERSITY.EDUCATION.PLATFORMS.Domain.Entities;
-using UNIVERSITY.EDUCATION.PLATFORMS.SERVICE.Interface;
+using UNIVERSITY.EDUCATION.PLATFORMS.Service.Interface;
 
-namespace UNIVERSITY.EDUCATION.PLATFORMS.SERVICE.Implementation
+namespace UNIVERSITY.EDUCATION.PLATFORMS.Service.Implementation
 {
     public class RefreshTokenService : IRefreshTokenService
     {

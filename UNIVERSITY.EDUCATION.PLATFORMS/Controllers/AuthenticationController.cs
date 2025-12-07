@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using UNIVERSITY.EDUCATION.PLATFORMS.Application.Models.Login;
 using UNIVERSITY.EDUCATION.PLATFORMS.Application.Service;
-using UNIVERSITY.EDUCATION.PLATFORMS.SERVICE.Interface;
+using UNIVERSITY.EDUCATION.PLATFORMS.Service.Interface;
 using AuthorizeAttribute = UNIVERSITY.EDUCATION.PLATFORMS.Common.AuthorizeAttribute;
 
 namespace UNIVERSITY.EDUCATION.PLATFORMS.Controllers

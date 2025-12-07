@@ -6,9 +6,9 @@ using UNIVERSITY.EDUCATION.PLATFORMS.Application.Service;
 using UNIVERSITY.EDUCATION.PLATFORMS.Application.Services.GenericService;
 using UNIVERSITY.EDUCATION.PLATFORMS.Domain.Entities;
 using UNIVERSITY.EDUCATION.PLATFORMS.Infrastructure.Persistence;
-using UNIVERSITY.EDUCATION.PLATFORMS.SERVICE.Interface;
+using UNIVERSITY.EDUCATION.PLATFORMS.Service.Interface;
 
-namespace UNIVERSITY.EDUCATION.PLATFORMS.SERVICE.Implementation
+namespace UNIVERSITY.EDUCATION.PLATFORMS.Service.Implementation
 {
     public class UserService: AppBaseService<Users, Guid, CreateUserRequest, UpdateUserRequest, UserDto>, IUserService
     {

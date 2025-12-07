@@ -1,6 +1,6 @@
 ﻿
-using UNIVERSITY.EDUCATION.PLATFORMS.SERVICE.Interface;
-namespace UNIVERSITY.EDUCATION.PLATFORMS.SERVICE.Implementation
+using UNIVERSITY.EDUCATION.PLATFORMS.Service.Interface;
+namespace UNIVERSITY.EDUCATION.PLATFORMS.Service.Implementation
 {
     public class BCryptEncryptionService : IBCryptEncryptionService
     {

@@ -3,7 +3,7 @@
 using UNIVERSITY.EDUCATION.PLATFORMS.Application.Models.Users;
 using UNIVERSITY.EDUCATION.PLATFORMS.Domain.Entities;
 
-namespace UNIVERSITY.EDUCATION.PLATFORMS.SERVICE.Mappings
+namespace UNIVERSITY.EDUCATION.PLATFORMS.Service.Mappings
 {
     public class GeneralProfile : Profile
     {

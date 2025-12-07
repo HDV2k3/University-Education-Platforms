@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UNIVERSITY.EDUCATION.PLATFORMS.SERVICE.Interface
+namespace UNIVERSITY.EDUCATION.PLATFORMS.Service.Interface
 {
     public interface IBCryptEncryptionService
     {
