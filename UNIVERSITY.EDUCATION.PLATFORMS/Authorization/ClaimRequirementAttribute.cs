@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using UNIVERSITY.EDUCATION.PLATFORMS.Constants;
+using UNIVERSITY.EDUCATION.PLATFORMS.Application.Constants;
 
 namespace UNIVERSITY.EDUCATION.PLATFORMS.Authorization
 {

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using UNIVERSITY.EDUCATION.PLATFORMS.Application.Services.Interface;
-using UNIVERSITY.EDUCATION.PLATFORMS.Constants;
+using UNIVERSITY.EDUCATION.PLATFORMS.Application.Constants;
+using UNIVERSITY.EDUCATION.PLATFORMS.Application.Service;
 using UNIVERSITY.EDUCATION.PLATFORMS.Helpers;
 
 namespace UNIVERSITY.EDUCATION.PLATFORMS.Authorization
